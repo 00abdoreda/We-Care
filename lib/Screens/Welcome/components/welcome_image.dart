@@ -13,7 +13,7 @@ class WelcomeImage extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "مرحبا بك من جدبد",
+          "Welcome....",
           style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 22),
         ),
         SizedBox(height: defaultPadding * 2),

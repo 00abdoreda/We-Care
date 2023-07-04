@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'Screens/Welcome/welcome_screen.dart';
 import 'main.dart';
 
 class IntroScreenDefault extends StatefulWidget {
@@ -22,7 +23,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
 
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_)=>MyHomePage(title: 'main',))
+      MaterialPageRoute(builder: (_)=>WelcomeScreen())
     );
 
   }

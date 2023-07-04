@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'Screens/Welcome/welcome_screen.dart';
+import 'constants.dart';
 import 'intro.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 void main() async {
@@ -29,9 +32,33 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
-
       debugShowCheckedModeBanner: false,
-      home: introdate2.read('displayed')?MyHomePage(title: 'hello',) : IntroScreenDefault() ,
+      title: 'Flutter Auth',
+      theme: ThemeData(
+          primaryColor: kPrimaryColor,
+          scaffoldBackgroundColor: Colors.white,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              primary: kPrimaryColor,
+              shape: const StadiumBorder(),
+              maximumSize: const Size(double.infinity, 56),
+              minimumSize: const Size(double.infinity, 56),
+            ),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: kPrimaryLightColor,
+            iconColor: kPrimaryColor,
+            prefixIconColor: kPrimaryColor,
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderSide: BorderSide.none,
+            ),
+          )),
+      home: introdate2.read('displayed')?WelcomeScreen() : IntroScreenDefault() ,
 
 
     );
@@ -79,12 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by

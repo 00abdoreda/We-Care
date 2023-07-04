@@ -18,13 +18,13 @@ class AlreadyHaveAnAccountChec extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            login ? "هل فقدت كلمة المرور؟" : "للدعم الفني...",
+            login ? "Forget Password" : "technical support",
             style: const TextStyle(color: kPrimaryColor),
           ),
           GestureDetector(
             onTap: press as void Function()?,
             child: Text(
-              login ? "اضغط هنا لاسترجاعها" : "اضغط هنا ",
+              login ? "press her" : "press here ",
               style: const TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.bold,
