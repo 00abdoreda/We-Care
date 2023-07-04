@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-class AlreadyHaveAnAccountCheck extends StatelessWidget {
+class Forget_pass extends StatelessWidget {
   final bool login;
   final Function? press;
-  const AlreadyHaveAnAccountCheck({
+  const Forget_pass({
     Key? key,
     this.login = true,
     required this.press,
@@ -15,14 +15,14 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          login ? "haven't an account " : "have an account ",
-          style: const TextStyle(color: kPrimaryColor),
-        ),
+        // Text(
+        //   login ? "forget my password " : "have an account ",
+        //   style: const TextStyle(color: kPrimaryColor),
+        // ),
         GestureDetector(
           onTap: press as void Function()?,
           child: Text(
-            login ? "Register" : "sign in",
+            login ? "forget my password" : "forget my pass",
             style: const TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,

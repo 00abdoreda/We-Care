@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
+import '../../../components/forget pass.dart';
 import '../../../constants.dart';
 import '../../Signup/signup_screen.dart';
+import '../../forget pass/components/Forget_pass_screen.dart';
+import '../../forget pass/forget my pass.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -60,6 +63,19 @@ class LoginForm extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return SignUpScreen();
+                  },
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: defaultPadding),
+          Forget_pass(
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ForgetPassScreenn();
                   },
                 ),
               );
