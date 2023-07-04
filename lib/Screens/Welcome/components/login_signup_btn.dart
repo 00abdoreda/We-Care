@@ -31,7 +31,7 @@ class LoginAndSignupBtn extends StatelessWidget {
                     (route) => false,
               );
             },
-
+            // onPressed: () {  },
             child: Text(
               "Sign In",
               style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
@@ -53,7 +53,7 @@ class LoginAndSignupBtn extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
               backgroundColor: kPrimaryLightColor, elevation: 0),
-
+          // onPressed: () {  },
           child: Text(
             "Sign Up",
             style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
