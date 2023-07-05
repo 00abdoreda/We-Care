@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cancer2/Screens/Profile/Update_Profile_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:get_storage/get_storage.dart';
@@ -23,7 +24,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
 
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_)=>WelcomeScreen())
+      MaterialPageRoute(builder: (_)=>UpdateProfileScreen())
     );
 
   }
