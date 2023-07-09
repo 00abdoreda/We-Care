@@ -6,6 +6,8 @@ import 'package:intro_slider/intro_slider.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'Screens/Welcome/welcome_screen.dart';
+import 'Screens/classify/components/ForgetPassForm.dart';
+import 'Screens/classify/forget my pass.dart';
 import 'main.dart';
 
 class IntroScreenDefault extends StatefulWidget {
@@ -24,7 +26,7 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
 
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_)=>UpdateProfileScreen())
+      MaterialPageRoute(builder: (_)=>WelcomeScreen())
     );
 
   }
