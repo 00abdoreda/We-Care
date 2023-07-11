@@ -1,4 +1,5 @@
 import 'package:cancer2/Screens/DoctorScreen/components/model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,11 +35,62 @@ class _LoginFormState extends State<doctorForm> {
   getdata()async{
     events=await remoteServices().getEvents(locationValue, dayValue);
 
-    if(events!=null){
+    if(events?.length!=0){
       setState(() {
         isloaded=true;
       });
+    }else{
+      setState(() {
+        isloaded=false;
+        print( isloaded);
+      });
     }
+  }
+  final dio=Dio();
+
+  postData(mobiledoctor)async{
+    try{
+      var response=await dio.post('http://192.168.1.4:8000/api/bookdoctor'
+          ,data: {"day":dayValue,"mobileDoc":mobiledoctor.toString(),"mobilePat":introdate.read('umobile').toString()});
+
+      if(response.statusCode==200){
+        customToast('success', context);
+
+        // await introdate.write('uid', response.data._id.toString());
+
+
+
+      }else{
+        customToast('Error', context);
+      }
+
+
+
+
+
+    }catch(e){
+      customToast('error', context);
+      print(e);
+
+    }
+  }
+  void customToast(String message,BuildContext context){
+    showToast(message,textStyle: TextStyle(fontSize: 14,wordSpacing: .1,color: Colors.black),
+      textPadding: EdgeInsets.all(16),
+      toastHorizontalMargin: 25
+      ,borderRadius: BorderRadius.circular(15),
+      backgroundColor: Colors.green,
+      alignment: Alignment.bottomLeft,
+      position: StyledToastPosition.bottom,
+      animation: StyledToastAnimation.fade,
+      duration: Duration(seconds: 5),
+      context: context,
+
+
+    );
+
+
+
   }
 
   // Define a function to build the dropdowns
@@ -145,6 +197,7 @@ class _LoginFormState extends State<doctorForm> {
                       // Add the InkWell widget here
                       InkWell(
                         onTap: () {
+                          postData(events![index].mobile.toString());
                           // Handle the button press here
                         },
                         child: Container(

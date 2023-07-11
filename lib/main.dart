@@ -2,6 +2,7 @@ import 'package:cancer2/Screens/DoctorScreen/login_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'Screens/BookingScreen/components/login_form.dart';
 import 'Screens/DoctorScreen/components/login_form.dart';
 import 'Screens/Profile/Update_Profile_Screen.dart';
 import 'Screens/Welcome/welcome_screen.dart';
@@ -81,6 +82,7 @@ class BottomNavBar extends StatelessWidget {
       return [
         TfliteModel(),
         const doctorForm(),
+        const bookingForm(),
         const UpdateProfileScreen(),
 
 
@@ -100,6 +102,14 @@ class BottomNavBar extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.search),
           title: ("Doctors"),
+          activeColorPrimary: Colors.blue,
+          inactiveColorPrimary: Colors.grey,
+
+
+        ),
+        PersistentBottomNavBarItem(
+          icon: const Icon(Icons.app_registration),
+          title: ("Bookings"),
           activeColorPrimary: Colors.blue,
           inactiveColorPrimary: Colors.grey,
 

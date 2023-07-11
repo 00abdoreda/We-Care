@@ -264,10 +264,12 @@ Dermatofibromas are usually diagnosed based on their appearance and location, an
     }
   }
 
+
+
   loadModel() async {
     //this function loads our model
     await Tflite.loadModel(
-      model: 'assets/model.tflite',
+      model: 'assets/model2.tflite',
       labels: 'assets/labels.txt',
     );
   }
@@ -281,6 +283,7 @@ Dermatofibromas are usually diagnosed based on their appearance and location, an
       _image = File(image.path);
     });
     classifyImage(_image);
+    _showDiseaseDialog2(context);
   }
 
   pickGalleryImage() async {
@@ -613,6 +616,34 @@ Dermatofibromas are usually diagnosed based on their appearance and location, an
               Text('Dangerous: ${disease.isDangerous ? 'Yes' : 'No'}'),
               SizedBox(height: 16.0),
               Text('Treatment: ${disease.treatment}'),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showDiseaseDialog2(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Accuracy'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Accuracy is low'),
+              SizedBox(height: 16.0),
+
             ],
           ),
           actions: [
