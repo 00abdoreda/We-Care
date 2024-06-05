@@ -8,7 +8,7 @@
         android:label="We Care"
         android:icon="@mipmap/launcher_icon">
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyDpMv1jw1ej-T9HCbyMB36E23CnwjtxW8Q"/>
+           android:value="your Api Key"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
