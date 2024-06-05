@@ -5,11 +5,16 @@ import '../../../components/forget pass.dart';
 import '../../../constants.dart';
 import '../../Signup/signup_screen.dart';
 
-class ChangePasswordForm extends StatelessWidget {
+class ChangePasswordForm extends StatefulWidget {
   const ChangePasswordForm({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ChangePasswordForm> createState() => _ChangePasswordFormState();
+}
+
+class _ChangePasswordFormState extends State<ChangePasswordForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -65,7 +70,8 @@ class ChangePasswordForm extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               child: Text(
-                "Verfiy",
+                "change Now",              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
+
               ),
             ),
           ),

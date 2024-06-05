@@ -38,27 +38,26 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
 
     listContentConfig.add(
       const ContentConfig(
-        title: "Skin diseases",
+        title: "Precocious",
         description:
-        "Skin diseases are highly dangerous and some of them are infectious",
+        "Early stage Alzheimer's disease, characterized by mild cognitive decline, memory, language, and problem-solving difficulties, necessitates prompt diagnosis and intervention to manage symptoms and prepare for the future.",
         pathImage: "images/l1.png",
         backgroundColor: Color(0xff23cff5),
       ),
     );
     listContentConfig.add(
       const ContentConfig(
-        title: "AI",
+        title: "Advanced",
         description:
-        "Our mobile application helps people identify and differ between the diseases using AI",
+        "Advanced stage Alzheimer's disease involves severe cognitive decline, memory loss, and behavioral changes, requiring comprehensive care and support to manage symptoms and maintain quality of life.",
         pathImage: "images/l3.png",
         backgroundColor: Color(0xffb047a8),
       ),
     );
     listContentConfig.add(
       const ContentConfig(
-        title: "Application",
-        description:
-        "application can be a faster and more reliable way to diagnose the disease",
+        title: "Intermediary",
+        description:"The protein mediator in Alzheimer's disease is crucial for neurofibrillary tangle formation, leading to neuronal damage and impaired memory, potentially aiding in the development of potential treatments.",
         pathImage: "images/l2.png",
         backgroundColor: Color(0xff9932CC),
       ),

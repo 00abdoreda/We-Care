@@ -50,7 +50,7 @@ class _LoginFormState extends State<doctorForm> {
 
   postData(mobiledoctor)async{
     try{
-      var response=await dio.post('http://192.168.1.4:8000/api/bookdoctor'
+      var response=await dio.post('http://192.168.124.111:8000/api/bookdoctor'
           ,data: {"day":dayValue,"mobileDoc":mobiledoctor.toString(),"mobilePat":introdate.read('umobile').toString()});
 
       if(response.statusCode==200){

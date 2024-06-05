@@ -1,4 +1,5 @@
 import 'package:cancer2/Screens/DoctorScreen/login_screen.dart';
+import 'package:cancer2/geomap.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -45,8 +46,7 @@ class _MyAppState extends State<MyApp> {
           scaffoldBackgroundColor: Colors.white,
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              elevation: 0,
-              primary: kPrimaryColor,
+              elevation: 0, backgroundColor: kPrimaryColor,
               shape: const StadiumBorder(),
               maximumSize: const Size(double.infinity, 56),
               minimumSize: const Size(double.infinity, 56),
@@ -81,8 +81,9 @@ class BottomNavBar extends StatelessWidget {
 
       return [
         TfliteModel(),
-        const doctorForm(),
-        const bookingForm(),
+
+        GeoMap(),
+
         const UpdateProfileScreen(),
 
 
@@ -99,17 +100,10 @@ class BottomNavBar extends StatelessWidget {
 
         ),
 
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.search),
-          title: ("Doctors"),
-          activeColorPrimary: Colors.blue,
-          inactiveColorPrimary: Colors.grey,
 
-
-        ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.app_registration),
-          title: ("Bookings"),
+          icon: const Icon(Icons.map),
+          title: ("Map"),
           activeColorPrimary: Colors.blue,
           inactiveColorPrimary: Colors.grey,
 

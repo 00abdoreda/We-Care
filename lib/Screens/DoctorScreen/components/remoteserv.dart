@@ -9,7 +9,7 @@ class remoteServices{
   Future<List<doctors>?>getEvents(address,day)async{
 
   // var client = http.C
-var uri='http://192.168.1.4:8000/api/getDoctors/'+address+'/'+day;
+var uri='http://192.168.124.111:8000/api/getDoctors/'+address+'/'+day;
 var response =await dio.get(uri);
 if(response.statusCode==200){
  // var json = response.data;

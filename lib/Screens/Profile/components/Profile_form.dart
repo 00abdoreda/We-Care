@@ -44,7 +44,7 @@ class _ProfileFormState extends State<ProfileForm> {
   final dio=Dio();
   postData(fname,lname,address,email,mobile,nid,age)async{
     try{
-      var response=await dio.patch('http://192.168.1.4:8000/api/updateaccount/'+mobile
+      var response=await dio.patch('http://192.168.124.111:8000/api/updateaccount/'+mobile
           ,data: {"firstName":fname.toString(),'lastName':lname.toString(),"address":address.toString(),"email":email.toString(),"Nid":nid.toString(),"age":age,"photo":'hhh',"isactive":isactive});
       if(response.statusCode!=400){
         customToast('update success', context);
@@ -123,7 +123,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
   }
   Future<user> fetchCatFact(ph) async {
-    final response = await dio.get('http://192.168.1.4:8000/api/getaccount/'+ph);
+    final response = await dio.get('http://192.168.124.111:8000/api/getaccount/'+ph);
 
     if (response.statusCode == 200) {
       return user.fromJson(response.data);
@@ -137,7 +137,7 @@ class _ProfileFormState extends State<ProfileForm> {
   return FutureBuilder<user>(
   future: events2,
   builder: (context,  snapshot){
-  if (snapshot.hasData) {
+  if (!snapshot.hasData) {
     return Form(
       autovalidateMode: _autoValidateMode,
       key: formKey,
@@ -156,7 +156,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: firstNameController,
             onTap: (){
               setState(() {
-                firstNameController.text=snapshot.data!.firstName!;
+                firstNameController.text=introdate.read('fname');
               });
             },
             decoration: InputDecoration(
@@ -176,7 +176,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: lastNameController,
             onTap: (){
               setState(() {
-                lastNameController.text=snapshot.data!.lastName!;
+                lastNameController.text=introdate.read('lname');
               });
             },
             decoration: InputDecoration(
@@ -196,7 +196,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: emailController,
             onTap: (){
               setState(() {
-                emailController.text=snapshot.data!.email!;
+                emailController.text=introdate.read('email');
               });
             },
             decoration: InputDecoration(
@@ -216,7 +216,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: ageController,
             onTap: (){
               setState(() {
-                ageController.text=snapshot.data!.age!.toString();
+                ageController.text=introdate.read('age');
               });
             },
             decoration: InputDecoration(
@@ -236,7 +236,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: mobileController,
             onTap: (){
               setState(() {
-                mobileController.text=snapshot.data!.mobile!;
+                mobileController.text=introdate.read('ph');
               });
             },
             decoration: InputDecoration(
@@ -256,7 +256,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: nidController,
             onTap: (){
               setState(() {
-               nidController.text=snapshot.data!.nid!;
+               nidController.text=introdate.read('Nid');
               });
             },
             decoration: InputDecoration(
@@ -275,7 +275,7 @@ class _ProfileFormState extends State<ProfileForm> {
             controller: addressController,
             onTap: (){
               setState(() {
-                addressController.text=snapshot.data!.address!;
+                addressController.text=introdate.read('Add');
               });
             },
             decoration: InputDecoration(
@@ -308,9 +308,10 @@ class _ProfileFormState extends State<ProfileForm> {
           const SizedBox(height: defaultPadding ),
           ElevatedButton(
             onPressed:(){
-             handleSubmit(snapshot.data!.firstName, snapshot.data!.lastName, snapshot.data!.address, snapshot.data!.email, snapshot.data!.mobile, snapshot.data!.nid, snapshot.data!.age);
+             handleSubmit();
             },
-            child: Text("Update Profile"),
+            child: Text("Update Profile",              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
+            ),
           ),
           const SizedBox(height: defaultPadding),
           ChangePassword(
@@ -356,34 +357,34 @@ class _ProfileFormState extends State<ProfileForm> {
   );
 
 }
-  void handleSubmit(fname,lname,address,email,mobile,nid,age)async {
+  void handleSubmit()async {
     setState(await() {
       if(firstNameController.text.isEmpty){
-        firstNameController.text=fname;
+        firstNameController.text=introdate.read('fname');
 
       }
       if(lastNameController.text.isEmpty){
-        lastNameController.text=lname;
+        lastNameController.text=introdate.read('lname');
 
       }
       if(addressController.text.isEmpty){
-        addressController.text=address;
+        addressController.text=introdate.read('Add');
 
       }
       if(emailController.text.isEmpty){
-        emailController.text=email;
+        emailController.text=introdate.read('email');
 
       }
       if(mobileController.text.isEmpty){
-        mobileController.text=mobile;
+        mobileController.text=introdate.read('ph');
 
       }
       if(nidController.text.isEmpty){
-        nidController.text=nid;
+        nidController.text=introdate.read('Nid');
 
       }
       if(ageController.text.isEmpty){
-       ageController.text=age.toString();
+       ageController.text=introdate.read('age');
 
       }
     });
@@ -401,11 +402,18 @@ class _ProfileFormState extends State<ProfileForm> {
       _autoValidateMode = AutovalidateMode.always;
       //print(nid.text);
 
-
-      postData(firstNameController.text,lastNameController.text,addressController.text,emailController.text,mobileController.text,nidController.text,ageController.text);
-      setState(() {
-        events2=fetchCatFact(introdate.read('umobile').toString());
-      });
+      introdate.write('fname', firstNameController.text);
+      introdate.write('lname', lastNameController.text);
+      introdate.write('email', emailController.text);
+      introdate.write('age', ageController.text);
+      introdate.write('ph', mobileController.text);
+      introdate.write('Nid', nidController.text);
+      introdate.write('Add', addressController.text);
+      customToast('تم تحديث البيانات بنجاح', context);
+      //postData(firstNameController.text,lastNameController.text,addressController.text,emailController.text,mobileController.text,nidController.text,ageController.text);
+      // setState(() {
+      //   events2=fetchCatFact(introdate.read('umobile').toString());
+      // });
 
 
 

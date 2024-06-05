@@ -9,7 +9,7 @@ class remoteServices{
   Future<List<booking>?>getEvents(ph)async{
 
   // var client = http.C
-var uri='http://192.168.1.4:8000/api/getappoint/'+ph;
+var uri='http://192.168.124.111:8000/api/getappoint/'+ph;
 var response =await dio.get(uri);
 if(response.statusCode==200){
  // var json = response.data;

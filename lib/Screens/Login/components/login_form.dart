@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
   final dio=Dio();
   postData(email,password)async{
     try{
-      var response=await dio.post('http://192.168.1.4:8000/api/login'
+      var response=await dio.post('http://192.168.124.111:8000/api/login'
           ,data: {"email":email.toString(),"password":password.toString()});
 
       if(response.statusCode==200){
@@ -139,6 +139,7 @@ class _LoginFormState extends State<LoginForm> {
               onPressed:  handleSubmit,
               child: Text(
                 "Login".toUpperCase(),
+                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
               ),
             ),
           ),
@@ -184,7 +185,24 @@ class _LoginFormState extends State<LoginForm> {
     if (formState!.validate()) {
       _autoValidateMode = AutovalidateMode.always;
       //print(nid.text);
-      postData(emailController.text,passwordController.text);
+     // postData(emailController.text,passwordController.text);
+      try{
+        print(introdate.read('email'));
+        if(introdate.read('email')==emailController.text&&introdate.read('Pass')==passwordController.text){
+          customToast('تم تسجيل الدخول بنجاح', context);
+           introdate.write('displayed', true);
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute<dynamic>(builder: (context) =>  BottomNavBar()),
+                  (route) => false
+          );
+        }else{
+          customToast('فشلت عملية تسجيل الدخول', context);
+        }
+
+      }catch(err){
+        customToast('فشلت عملية تسجيل الدخول', context);
+      }
 
       // name.clear();
       //

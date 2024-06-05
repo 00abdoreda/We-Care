@@ -8,6 +8,7 @@ import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
 import '../../Login/login_screen.dart';
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 class SignUpForm extends StatefulWidget {
   const SignUpForm({
     Key? key,
@@ -30,11 +31,12 @@ class _SignUpFormState extends State<SignUpForm> {
   final  passwordController = TextEditingController();
   final  ageController = TextEditingController();
   String? photo='..';
+  final introdate=GetStorage();
   bool? isactive=true;
   final dio=Dio();
   postData(fname,lname,address,email,mobile,nid,password,age,)async{
     try{
-      var response=await dio.post('http://192.168.1.4:8000/api/newaccount'
+      var response=await dio.post('http://192.168.124.111:8000/api/newaccount'
           ,data: {"firstName":fname.toString(),'lastName':lname.toString(),"address":address.toString(),"email":email.toString(),"mobile":mobile.toString(),"Nid":nid.toString(),"password":password.toString(),"age":age,"photo":'hhh',"isactive":isactive});
 print(fname);
       if(response.statusCode==200){
@@ -231,7 +233,9 @@ print(fname);
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed:  handleSubmit,
-            child: Text("Sign Up".toUpperCase()),
+            child: Text("Sign Up".toUpperCase(),
+              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
+            ),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
@@ -263,7 +267,21 @@ print('hello');
     if (formState!.validate()) {
       _autoValidateMode = AutovalidateMode.always;
       //print(nid.text);
-      postData(firstNameController.text,lastNameController.text,addressController.text,emailController.text,mobileController.text,nidController.text,passwordController.text,ageController.text);
+     // postData(firstNameController.text,lastNameController.text,addressController.text,emailController.text,mobileController.text,nidController.text,passwordController.text,ageController.text);
+      introdate.write('fname', firstNameController.text);
+      introdate.write('lname', lastNameController.text);
+      introdate.write('email', emailController.text);
+      introdate.write('age', ageController.text);
+      introdate.write('ph', mobileController.text);
+      introdate.write('Nid', nidController.text);
+      introdate.write('Add', addressController.text);
+      introdate.write('Pass', passwordController.text);
+      customToast('تم تسجيل حساب بنجاح', context);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute<dynamic>(builder: (context) => const LoginScreen()),
+              (route) => false
+      );
 
       // name.clear();
       //

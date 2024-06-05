@@ -34,7 +34,7 @@ class LoginAndSignupBtn extends StatelessWidget {
             // onPressed: () {  },
             child: Text(
               "Sign In",
-              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
             ),
           ),
         ),
